@@ -8,9 +8,6 @@
 import SwiftUI
 import Alamofire
 
-
-
-
 struct ContentView: View {
     
     @State private var resultados = [ForecastDay]()
@@ -19,48 +16,78 @@ struct ContentView: View {
     @State var iconoDelClima = "☀️"
     @State var tempActual = 0
     @State var condicionTexto = "Slightly Overcast"
-    @State var nombreCiudad = "Seattle"
+    @State var nombreCiudad = "Washington"
     @State var cargando = true
     var body: some View {
+        if cargando {
+            ZStack {
+                Color.init(colorDeFondo)
+                    .ignoresSafeArea()
+                ProgressView()
+                    .scaleEffect(2, anchor: .center)
+                    .progressViewStyle(CircularProgressViewStyle(tint: Color.white))
+                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/,maxHeight: .infinity)
+                    .task {
+                        await obtenerEstadoDeclima()
+                    }
+            }
+        } else {
+            NavigationView {  
+                
+            
         VStack {
+
             Spacer()
             Text("\(nombreCiudad)")
                 .font(.system(size: 35))
                 .foregroundStyle(.white)
                 .bold()
+                .padding(.bottom, 1)
             Text("\(Date().formatted(date: .complete, time: .omitted))")
                 .font(.system(size: 18))
             Text(iconoDelClima)
-                .font(.system(size: 180))
+                .font(.system(size: 140))
                 .shadow(radius: 75)
             Text("\(tempActual)°C")
-                .font(.system(size: 70))
+                .font(.system(size: 60))
                 .foregroundStyle(.white)
                 .bold()
             Text("\(condicionTexto)")
-                .font(.system(size: 22))
+                .font(.system(size: 20))
                 .foregroundStyle(.white)
-                .bold()
             Spacer()
             Spacer()
             Spacer()
             Text("Pronóstico por Hora")
-                .font(.system(size: 19))
+                .font(.system(size: 18))
                 .foregroundStyle(.white)
-                .shadow(color: .black.opacity(0.2), radius: 1, x:0, y:2)
                 .bold()
-            ScrollView(.horizontal, showsIndicators: false) {
+                .shadow(color: .black.opacity(0.2), radius: 1, x:0, y:2)
+            ScrollView(.horizontal, showsIndicators: false){
                 HStack{
                     Spacer()
                     ForEach(pronosticoPorHora) { forecast in
-                        VStack {
-                            
+                        VStack{
+                            Text("\(obtenerHora(time: forecast.time))")
+                                .shadow(color: .black.opacity(0.2), radius: 1, x:0, y: 2)
+                            Text("\(obtenerIconoDelClima(code: forecast.condition.code))")
+                                .shadow(color: .black.opacity(0.2), radius: 1, x:0, y: 2)
+                            Text("\(Int(forecast.temp_c))°C")
+                                .shadow(color: .black.opacity(0.2), radius: 1, x:0, y: 2)
                         }
-                        
+                        .frame(width: 50, height: 90)
                     }
+                    Spacer()
+                    Spacer()
                 }
+                .background(Color.white.blur(radius: 75).opacity(0.35))
+                .cornerRadius(15)
+                
             }
-            
+            Text("Pronóstico de 3 Días")
+                .font(.system(size: 20))
+                .foregroundStyle(.white)
+                .bold()
             List (resultados) { forecast in
                 HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: nil) {
                     Text("\(obtenerFecha(epoch: forecast.date_epoch))")
@@ -86,33 +113,32 @@ struct ContentView: View {
         }
         .background(colorDeFondo)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
-        .task {
-            await obtenerEstadoDeclima()
+        }
         }
     }
     
     func obtenerEstadoDeclima () async {
         let solicitud = AF.request("http://api.weatherapi.com/v1/forecast.json?key=aa92633023c44229b4e172550241311&q=98101&days=3&aqi=no&alerts=no")
-        solicitud.responseDecodable(of: Weather.self) { response in
-            switch response.result {
-            case.success(let weather):
-                nombreCiudad = weather.location.name
-                resultados = weather.forecast.forecastday
-                
-                var index = 0
-        
-                if Date(timeIntervalSince1970: TimeInterval(resultados[0].date_epoch)).formatted(Date.FormatStyle().weekday(.abbreviated)) !=
-                    Date().formatted(Date.FormatStyle().weekday(.abbreviated)) {
-                    index = 1
-                }
-                    
-                tempActual = Int(resultados[index].day.avgtemp_c)
-                pronosticoPorHora = resultados[index].day.hour
-                colorDeFondo = establecerColorDeFondo(code: resultados[index].day.condition.code)
-                iconoDelClima = obtenerIconoDelClima(code: resultados[0].day.condition.code)
-                condicionTexto = resultados[index].day.condition.text
-                cargando = false
-            case.failure(let error):
+              solicitud.responseDecodable(of: Weather.self) { response in
+                  switch response.result {
+                  case.success(let weather):
+                      nombreCiudad = weather.location.name
+                      resultados = weather.forecast.forecastday
+                      
+                      var index = 0
+              
+                      if Date(timeIntervalSince1970: TimeInterval(resultados[0].date_epoch)).formatted(Date.FormatStyle().weekday(.abbreviated)) !=
+                          Date().formatted(Date.FormatStyle().weekday(.abbreviated)) {
+                          index = 1
+                      }
+                          
+                      tempActual = Int(resultados[index].day.avgtemp_c)
+                      pronosticoPorHora = resultados[index].hour
+                      colorDeFondo = establecerColorDeFondo(code: resultados[index].day.condition.code)
+                      iconoDelClima = obtenerIconoDelClima(code: resultados[index].day.condition.code)
+                      condicionTexto = resultados[index].day.condition.text
+                      cargando = false
+                  case.failure(let error):
             print(error)
             }
             

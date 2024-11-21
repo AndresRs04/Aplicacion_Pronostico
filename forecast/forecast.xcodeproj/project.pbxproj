@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FB8484892CEE453A00F44BE6 /* Modelo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8484882CEE453A00F44BE6 /* Modelo.swift */; };
-		FB84848B2CEE45D400F44BE6 /* Funciones.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB84848A2CEE45D400F44BE6 /* Funciones.swift */; };
+		FB999B8E2CEFD64B002085DA /* DetallesClima.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB999B8D2CEFD64B002085DA /* DetallesClima.swift */; };
+		FBA8DFD62CEFB6E5004A6566 /* Modelos.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA8DFD52CEFB6E5004A6566 /* Modelos.swift */; };
+		FBA8DFD82CEFB75F004A6566 /* Funciones.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA8DFD72CEFB75F004A6566 /* Funciones.swift */; };
 		FBE855962CED425A005EA34C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = FBE855952CED425A005EA34C /* Alamofire */; };
 		FBE980432CE7B19500F3C3F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE980422CE7B19500F3C3F9 /* AppDelegate.swift */; };
 		FBE980452CE7B19500F3C3F9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE980442CE7B19500F3C3F9 /* SceneDelegate.swift */; };
@@ -40,8 +41,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		FB8484882CEE453A00F44BE6 /* Modelo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modelo.swift; sourceTree = "<group>"; };
-		FB84848A2CEE45D400F44BE6 /* Funciones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Funciones.swift; sourceTree = "<group>"; };
+		FB999B8D2CEFD64B002085DA /* DetallesClima.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetallesClima.swift; sourceTree = "<group>"; };
+		FBA8DFD52CEFB6E5004A6566 /* Modelos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modelos.swift; sourceTree = "<group>"; };
+		FBA8DFD72CEFB75F004A6566 /* Funciones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Funciones.swift; sourceTree = "<group>"; };
 		FBE9803F2CE7B19500F3C3F9 /* forecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = forecast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBE980422CE7B19500F3C3F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FBE980442CE7B19500F3C3F9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +89,9 @@
 		FBE980362CE7B19500F3C3F9 = {
 			isa = PBXGroup;
 			children = (
+				FB999B8D2CEFD64B002085DA /* DetallesClima.swift */,
+				FBA8DFD52CEFB6E5004A6566 /* Modelos.swift */,
+				FBA8DFD72CEFB75F004A6566 /* Funciones.swift */,
 				FBE980412CE7B19500F3C3F9 /* forecast */,
 				FBE980582CE7B19600F3C3F9 /* forecastTests */,
 				FBE980622CE7B19600F3C3F9 /* forecastUITests */,
@@ -115,8 +120,6 @@
 				FBE9804D2CE7B19500F3C3F9 /* LaunchScreen.storyboard */,
 				FBE980502CE7B19500F3C3F9 /* Info.plist */,
 				FBE980732CE7B43800F3C3F9 /* ContentView.swift */,
-				FB8484882CEE453A00F44BE6 /* Modelo.swift */,
-				FB84848A2CEE45D400F44BE6 /* Funciones.swift */,
 			);
 			path = forecast;
 			sourceTree = "<group>";
@@ -277,10 +280,11 @@
 			files = (
 				FBE980472CE7B19500F3C3F9 /* ViewController.swift in Sources */,
 				FBE980432CE7B19500F3C3F9 /* AppDelegate.swift in Sources */,
+				FB999B8E2CEFD64B002085DA /* DetallesClima.swift in Sources */,
 				FBE980742CE7B43800F3C3F9 /* ContentView.swift in Sources */,
+				FBA8DFD62CEFB6E5004A6566 /* Modelos.swift in Sources */,
+				FBA8DFD82CEFB75F004A6566 /* Funciones.swift in Sources */,
 				FBE980452CE7B19500F3C3F9 /* SceneDelegate.swift in Sources */,
-				FB84848B2CEE45D400F44BE6 /* Funciones.swift in Sources */,
-				FB8484892CEE453A00F44BE6 /* Modelo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
