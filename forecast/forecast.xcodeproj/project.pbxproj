@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FB999B8E2CEFD64B002085DA /* DetallesClima.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB999B8D2CEFD64B002085DA /* DetallesClima.swift */; };
+		FB891F052CEFEE7B00AB15F0 /* DetallesClima.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB891F042CEFEE7B00AB15F0 /* DetallesClima.swift */; };
 		FBA8DFD62CEFB6E5004A6566 /* Modelos.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA8DFD52CEFB6E5004A6566 /* Modelos.swift */; };
 		FBA8DFD82CEFB75F004A6566 /* Funciones.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA8DFD72CEFB75F004A6566 /* Funciones.swift */; };
 		FBE855962CED425A005EA34C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = FBE855952CED425A005EA34C /* Alamofire */; };
@@ -41,7 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		FB999B8D2CEFD64B002085DA /* DetallesClima.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetallesClima.swift; sourceTree = "<group>"; };
+		FB891F042CEFEE7B00AB15F0 /* DetallesClima.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetallesClima.swift; sourceTree = "<group>"; };
 		FBA8DFD52CEFB6E5004A6566 /* Modelos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modelos.swift; sourceTree = "<group>"; };
 		FBA8DFD72CEFB75F004A6566 /* Funciones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Funciones.swift; sourceTree = "<group>"; };
 		FBE9803F2CE7B19500F3C3F9 /* forecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = forecast.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,7 +89,7 @@
 		FBE980362CE7B19500F3C3F9 = {
 			isa = PBXGroup;
 			children = (
-				FB999B8D2CEFD64B002085DA /* DetallesClima.swift */,
+				FB891F042CEFEE7B00AB15F0 /* DetallesClima.swift */,
 				FBA8DFD52CEFB6E5004A6566 /* Modelos.swift */,
 				FBA8DFD72CEFB75F004A6566 /* Funciones.swift */,
 				FBE980412CE7B19500F3C3F9 /* forecast */,
@@ -280,7 +280,7 @@
 			files = (
 				FBE980472CE7B19500F3C3F9 /* ViewController.swift in Sources */,
 				FBE980432CE7B19500F3C3F9 /* AppDelegate.swift in Sources */,
-				FB999B8E2CEFD64B002085DA /* DetallesClima.swift in Sources */,
+				FB891F052CEFEE7B00AB15F0 /* DetallesClima.swift in Sources */,
 				FBE980742CE7B43800F3C3F9 /* ContentView.swift in Sources */,
 				FBA8DFD62CEFB6E5004A6566 /* Modelos.swift in Sources */,
 				FBA8DFD82CEFB75F004A6566 /* Funciones.swift in Sources */,

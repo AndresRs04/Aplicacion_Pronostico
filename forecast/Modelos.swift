@@ -30,7 +30,14 @@ struct ForecastDay: Codable, Identifiable {
 
 struct Day: Codable {
     var avgtemp_c: Double
+    var maxwind_kph: Double
+    var totalprecip_mm: Double
+    var daily_chance_of_rain: Int
+    var avghumidity: Int
+    var uv: Double
+    var avgvis_km: Double
     var condition: Condition
+    
 }
 
 struct Condition: Codable {
@@ -42,6 +49,7 @@ struct Hora: Codable, Identifiable {
     var time_epoch: Int
     var time: String
     var temp_c: Double
+    var feelslike_c: Double
     var condition: Condition
     var id: Int {time_epoch}
 }

@@ -41,8 +41,8 @@ func obtenerIconoDelClima(code: Int) -> String {
 
 func establecerColorDeFondo (code: Int) -> Color {
     let azulCielo = Color.init(red: 135/255, green: 206/255, blue: 235/255)
-    let gris = Color.init(red: 47/255, green: 79/255, blue: 79/255)
-    var colorDeFondo = gris
+    let grisOscuro = Color.init(red: 50/255, green: 50/255, blue: 50/255)
+    var colorDeFondo = grisOscuro
     
     switch code {
     case 1000, 1003:
