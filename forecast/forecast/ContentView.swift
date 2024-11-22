@@ -37,53 +37,75 @@ struct ContentView: View {
                 VStack {
                     
                     Spacer()
-                    
+                    // Nombre de la ciudad
                     Text("\(nombreCiudad)")
-                        .font(.system(size: 35))
+                        .font(.system(size: 35, weight: .bold))
                         .foregroundStyle(.white)
-                        .bold()
-                        .padding(.bottom, 1)
+                        .padding(.bottom, 8)
+                        .padding(.top, 10)
+                    
+                    //Fecha y Hora
                     Text("\(Date().formatted(date: .complete, time: .omitted))")
                         .font(.system(size: 18))
+                        .foregroundColor(.white.opacity(0.7))
+                    
+                    //Icono del Clima
                     Text(iconoDelClima)
-                        .font(.system(size: 140))
-                        .shadow(radius: 75)
+                        .font(.system(size: 120))
+                        .shadow(radius: 10)
+                        .padding(.vertical,1)
+                    
+                    //Temperatura Actual
                     Text("\(tempActual)°C")
-                        .font(.system(size: 60))
+                        .font(.system(size: 50, weight: .bold))
                         .foregroundStyle(.white)
-                        .bold()
+                        .shadow(color: .black.opacity(0.3), radius: 8, x: 0, y:4)
+                    
+                    //Condición Clima
                     Text("\(condicionTexto)")
-                        .font(.system(size: 20))
+                        .font(.system(size: 22))
                         .foregroundStyle(.white)
+                      
                     Spacer()
-                    Spacer()
-                    Spacer()
-                    Text("Pronóstico por Hora")
-                        .font(.system(size: 18))
-                        .foregroundStyle(.white)
-                        .bold()
-                        .shadow(color: .black.opacity(0.2), radius: 1, x:0, y:2)
-                    ScrollView(.horizontal, showsIndicators: false){
-                        HStack{
-                            Spacer()
-                            ForEach(pronosticoPorHora) { forecast in
-                                VStack{
-                                    Text("\(obtenerHora(time: forecast.time))")
-                                        .shadow(color: .black.opacity(0.2), radius: 1, x:0, y: 2)
-                                    Text("\(obtenerIconoDelClima(code: forecast.condition.code))")
-                                        .shadow(color: .black.opacity(0.2), radius: 1, x:0, y: 2)
-                                    Text("\(Int(forecast.temp_c))°C")
-                                        .shadow(color: .black.opacity(0.2), radius: 1, x:0, y: 2)
+            
+                    //Pronóstico por Hora
+                    VStack(spacing: 8) {
+                            Text("Pronóstico por Hora")
+                                .font(.system(size: 20, weight: .bold))
+                                .foregroundColor(.white)
+                                .padding(.horizontal, 16)
+                                .padding(.top, 5)
+                            
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(spacing: 16) {
+                                    ForEach(pronosticoPorHora) { forecast in
+                                        VStack(spacing: 4) {
+                                            Text("\(obtenerHora(time: forecast.time))")
+                                                .font(.system(size: 14))
+                                                .foregroundColor(.white)
+                                                .bold()
+                                            
+                                            Text("\(obtenerIconoDelClima(code: forecast.condition.code))")
+                                                .font(.system(size: 30))
+                                                .foregroundColor(.white)
+                                            
+                                            Text("\(Int(forecast.temp_c))°C")
+                                                .font(.system(size: 18))
+                                                .foregroundColor(.white)
+                                                .bold()
+                                        }
+                                        .frame(width: 70, height: 100)
+                                        .background(Color.white.opacity(0.2))
+                                        .cornerRadius(15)
+                                        .padding(.vertical, 8)
+                                    }
                                 }
-                                .frame(width: 50, height: 90)
+                                .padding(.horizontal, 16)
                             }
-                            Spacer()
-                            Spacer()
+                            .padding(.bottom, 20)
                         }
-                        .background(Color.white.blur(radius: 75).opacity(0.35))
-                        .cornerRadius(15)
-                        
-                    }
+                    
+                    //Pronostico 3 Días
                     Text("Pronóstico de 3 Días")
                         .font(.system(size: 20))
                         .foregroundStyle(.white)
@@ -119,6 +141,8 @@ struct ContentView: View {
                     .scrollContentBackground(.hidden)
                     .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
                     Spacer()
+                    
+                    // Footer App
                     Text("Información Proporcionada por Free Weather API")
                         .font(.system(size: 12))
                     
@@ -137,10 +161,9 @@ struct ContentView: View {
               solicitud.responseDecodable(of: Weather.self) { response in
                   switch response.result {
                   case.success(let weather):
+                      var index = 0
                       nombreCiudad = weather.location.name
                       resultados = weather.forecast.forecastday
-                      
-                      var index = 0
               
                       if Date(timeIntervalSince1970: TimeInterval(resultados[0].date_epoch)).formatted(Date.FormatStyle().weekday(.abbreviated)) !=
                           Date().formatted(Date.FormatStyle().weekday(.abbreviated)) {
